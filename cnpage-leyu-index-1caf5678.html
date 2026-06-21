@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>乐鱼体育 · 信息卡片</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f2f4f7;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e2a3a;
+            line-height: 1.6;
+            padding: 2rem 1.5rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page-wrap {
+            max-width: 1024px;
+            width: 100%;
+        }
+
+        /* 主视觉卡片 hero */
+        .hero-card {
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.02);
+            padding: 2.5rem 2rem 2.2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -60%;
+            left: -20%;
+            width: 240px;
+            height: 240px;
+            background: radial-gradient(circle, rgba(220, 230, 255, 0.35) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-card h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #13294b;
+            margin-bottom: 0.4rem;
+        }
+
+        .hero-card .tagline {
+            font-size: 1rem;
+            color: #4f5b6a;
+            max-width: 600px;
+            margin: 0.5rem auto 1.2rem;
+            background: #f5f7fb;
+            display: inline-block;
+            padding: 0.2rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #e6eaef;
+            line-height: 1.8;
+        }
+
+        .hero-card p {
+            font-size: 1rem;
+            color: #2c3a4b;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* 普通卡片通用样式 */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px #eaedf2;
+            padding: 1.8rem 1.8rem 2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04), 0 0 0 1px #d4dae3;
+        }
+
+        .card h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-left: 4px solid #3f6b9c;
+            padding-left: 0.9rem;
+            margin-bottom: 1.1rem;
+            color: #1f2d41;
+            letter-spacing: -0.01em;
+        }
+
+        .card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.4rem;
+            color: #1f2d41;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem 1.8rem;
+            margin: 1.2rem 0 0.2rem;
+        }
+
+        .grid-item {
+            background: #f9fafc;
+            padding: 1.2rem 1.2rem 1.4rem;
+            border-radius: 16px;
+            border: 1px solid #edf0f5;
+        }
+
+        .grid-item p {
+            font-size: 0.95rem;
+            color: #2e3b4c;
+        }
+
+        .grid-item .label {
+            display: inline-block;
+            font-weight: 500;
+            color: #1f2d41;
+            margin-bottom: 0.25rem;
+            font-size: 0.95rem;
+            background: #e7ecf5;
+            padding: 0 0.6rem;
+            border-radius: 20px;
+            line-height: 1.6;
+        }
+
+        .audience-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 1.2rem;
+            margin-top: 0.8rem;
+        }
+
+        .audience-item {
+            background: #f8fafc;
+            border-radius: 16px;
+            padding: 1.2rem 0.8rem 1rem;
+            border: 1px solid #e8ecf2;
+            text-align: center;
+        }
+
+        .audience-item .emoji-bg {
+            font-size: 1.8rem;
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        .audience-item h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.15rem;
+            color: #1b293b;
+        }
+
+        .audience-item p {
+            font-size: 0.85rem;
+            color: #4d5b6b;
+            padding: 0 0.2rem;
+        }
+
+        .link-sentence {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px #eaedf2;
+            padding: 1.4rem 1.8rem 1.6rem;
+            margin-bottom: 1.8rem;
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #1f2d41;
+        }
+
+        .link-sentence a {
+            color: #1f509e;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid #bcc9de;
+            transition: border-color 0.2s;
+        }
+
+        .link-sentence a:hover {
+            border-bottom: 2px solid #1f509e;
+        }
+
+        .link-sentence strong {
+            font-weight: 500;
+            color: #0b1d33;
+        }
+
+        .faq-mini {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03), 0 0 0 1px #eaedf2;
+            padding: 1.8rem 1.8rem 2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .faq-mini h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            border-left: 4px solid #5982b0;
+            padding-left: 0.9rem;
+            margin-bottom: 1.2rem;
+            color: #1f2d41;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-bottom: 1px solid #edf0f5;
+            padding-bottom: 0.9rem;
+        }
+
+        .faq-item:last-of-type {
+            border-bottom: 0;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .faq-item .q {
+            font-weight: 500;
+            color: #1b2a3c;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-item .a {
+            color: #3b4a5c;
+            font-size: 0.92rem;
+        }
+
+        .footnote {
+            margin-top: 0.8rem;
+            font-size: 0.85rem;
+            text-align: center;
+            color: #6c7a8a;
+            border-top: 1px solid #dfe4eb;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 760px) {
+            body { padding: 1.5rem 1rem 3rem; }
+            .hero-card { padding: 2rem 1.2rem; }
+            .hero-card h1 { font-size: 1.8rem; }
+            .card-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .audience-grid { grid-template-columns: 1fr; gap: 0.8rem; }
+            .card { padding: 1.4rem 1.2rem; }
+            .link-sentence { padding: 1.2rem 1.2rem; }
+            .faq-mini { padding: 1.4rem 1.2rem; }
+        }
+
+        @media (max-width: 480px) {
+            .hero-card h1 { font-size: 1.6rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 主视觉卡片 -->
+    <div class="hero-card">
+        <h1>乐鱼体育 · 信息速览</h1>
+        <div class="tagline">赛事对照 · 日常查询 · 延伸阅读</div>
+        <p>从赛前数据到赛后梳理，从单项运动到综合赛事，<strong>乐鱼体育</strong> 提供一种结构化的信息获取方式。本页围绕常见查询场景，整理了几组用途卡片与人群参考，方便快速对照与浏览。</p>
+    </div>
+
+    <!-- 用途卡片：信息对照 -->
+    <div class="card">
+        <h2>📋 用途卡片 · 日常查询与对照</h2>
+        <div class="card-grid">
+            <div class="grid-item">
+                <span class="label">📊 赛程对齐</span>
+                <p>联赛、杯赛、资格赛日程密集，按周/月对照赛历，快速定位时间与对阵。适用于多赛事并行时的信息整理。</p>
+            </div>
+            <div class="grid-item">
+                <span class="label">🏅 数据速查</span>
+                <p>积分、排名、得失球、关键统计——将分散的数据聚合为简洁列表，减少反复跳转，方便横向比较。</p>
+            </div>
+            <div class="grid-item">
+                <span class="label">📌 队伍档案</span>
+                <p>主力阵容、近期状态、主客场表现等维度归拢为档案卡片，适合赛前快速扫描对手与主队信息。</p>
+            </div>
+            <div class="grid-item">
+                <span class="label">📚 延伸阅读</span>
+                <p>赛事回顾、战术简析、规则变化——围绕特定比赛或运动项目提供背景文章，辅助深度理解。</p>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #3b4c5e;">这些卡片并非固定模板，而是根据查询需求动态组合。例如查看一场足球联赛时，可同时调出积分对照、伤病列表与近期交锋记录。</p>
+    </div>
+
+    <!-- 适合人群卡片 -->
+    <div class="card">
+        <h2>👥 适合人群</h2>
+        <div class="audience-grid">
+            <div class="audience-item">
+                <span class="emoji-bg">🔍</span>
+                <h4>日常查询者</h4>
+                <p>习惯在赛前或赛后快速核对时间、比分、排名，希望信息一目了然。</p>
+            </div>
+            <div class="audience-item">
+                <span class="emoji-bg">📖</span>
+                <h4>延伸阅读者</h4>
+                <p>不止关注结果，也关心战术变化、联赛历史与规则细节，需要背景资料支撑。</p>
+            </div>
+            <div class="audience-item">
+                <span class="emoji-bg">⚖️</span>
+                <h4>多赛事对照者</h4>
+                <p>同时关注不同联赛或运动项目，需要跨赛事汇总、对比与筛选。</p>
+            </div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.95rem; color: #3b4c5e;">以上三类并非互斥，很多场景下一个人会同时使用赛程对齐、数据速查与延伸阅读。卡片化的信息结构恰好能兼顾不同需求。</p>
+    </div>
+
+    <!-- 自然链接段落 -->
+    <div class="link-sentence">
+        <p style="margin-bottom: 0.6rem;"><strong>▎从查询到延伸：一个信息链的例子</strong></p>
+        <p>假设你正在了解某支球队的下一场联赛对手，首先可以通过赛程卡片确定比赛时间与场地，然后调出双方近五场的数据对照。如果希望进一步查看该对手的战术倾向或转会动态，可以借助平台内的延伸阅读模块。许多用户将 <a href="https://cnpage-leyu.com.cn">乐鱼体育</a> 作为这类信息链的起点——先浏览卡片摘要，再决定是否深入具体文章或数据页。这种方式避免了在多个页面之间无头绪地跳转，让每次查询都有清晰的路径。</p>
+        <p style="margin-top: 0.8rem;">当然，不同运动项目的信息重点不同：例如篮球更侧重球员效率与对位数据，网球则突出交锋记录与场地偏好。卡片体系会根据项目特性调整展示维度，但保持统一的快速检索逻辑。</p>
+    </div>
+
+    <!-- FAQ 摘要卡片 -->
+    <div class="faq-mini">
+        <h2>❓ 常见问题摘要</h2>
+        <div class="faq-item">
+            <div class="q">Q：信息卡片多久更新一次？</div>
+            <div class="a">赛程、比分与排名类数据跟随赛事进程实时或准实时更新；延伸阅读文章按周或赛事节点更新，具体视内容深度而定。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：可以同时对照两个不同联赛的数据吗？</div>
+            <div class="a">可以。多联赛对照是卡片体系支持的基础功能之一，用户可自定义对照范围，例如同时查看英超与西甲某轮的积分变化。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：是否有按运动项目（如足球、篮球、网球）分类的入口？</div>
+            <div class="a">有分类导航，可根据运动项目筛选对应的卡片组与数据面板，同时保留全局搜索功能。</div>
+        </div>
+        <div class="faq-item">
+            <div class="q">Q：延伸阅读的内容来源是什么？</div>
+            <div class="a">部分为平台编辑整理，部分引用公开赛事报告与数据源，并标注参考来源，读者可据此进一步核查。</div>
+        </div>
+        <p style="margin-top: 1rem; font-size: 0.92rem; color: #4f5f71;">以上是对常见疑问的简要梳理。具体功能细节与最新调整，建议直接参考平台内的帮助或更新日志。</p>
+    </div>
+
+    <div class="footnote">
+        本页为信息介绍与功能演示 · 内容仅供对照参考 · 具体数据以实际页面为准
+    </div>
+
+</div>
+</body>
+</html>
