@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>球探体育 · 站点介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: #f1f3f4;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #1e2a3a;
+            line-height: 1.7;
+            padding: 2rem 1rem;
+        }
+        .page {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        /* hero 区 */
+        .hero {
+            background: #ffffff;
+            border-radius: 28px;
+            padding: 2.5rem 2.2rem 2.2rem;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.03), 0 1px 3px rgba(0,0,0,0.02);
+            border: 1px solid #e4e8ed;
+            margin-bottom: 2rem;
+            transition: box-shadow 0.2s;
+        }
+        .hero:hover {
+            box-shadow: 0 8px 22px rgba(0,0,0,0.05), 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            color: #0b1a2b;
+            margin-bottom: 0.25rem;
+        }
+        .hero .subhead {
+            font-size: 1rem;
+            color: #4a5b6b;
+            border-left: 4px solid #b8c7d8;
+            padding-left: 1rem;
+            margin: 0.6rem 0 0.2rem 0;
+            font-style: normal;
+        }
+        .hero .meta-line {
+            display: flex;
+            gap: 0.4rem 1.5rem;
+            flex-wrap: wrap;
+            margin-top: 1.2rem;
+            font-size: 0.85rem;
+            color: #5f6f80;
+        }
+        .meta-line span {
+            background: #eef1f5;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            border: 1px solid #dce1e8;
+        }
+        /* 卡片面板 */
+        .card {
+            background: #ffffff;
+            border-radius: 24px;
+            padding: 2rem 2rem 1.9rem;
+            margin-bottom: 1.8rem;
+            border: 1px solid #e4e8ed;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .card p {
+            margin-bottom: 1.1rem;
+        }
+        .card p:last-child {
+            margin-bottom: 0;
+        }
+        .quote-note {
+            background: #f7f9fb;
+            border-left: 4px solid #9aabbe;
+            padding: 1rem 1.5rem;
+            margin: 1.4rem 0 1.8rem 0;
+            border-radius: 0 18px 18px 0;
+            font-size: 0.95rem;
+            color: #2b3f50;
+        }
+        .quote-note strong {
+            color: #0b1a2b;
+        }
+        .callout {
+            background: #f2f6fc;
+            border-radius: 16px;
+            padding: 1.2rem 1.4rem;
+            margin: 1.5rem 0 0.8rem 0;
+            border: 1px solid #d9e1ec;
+            font-size: 0.95rem;
+        }
+        a {
+            color: #1f5090;
+            text-decoration: none;
+            border-bottom: 1px solid #b9ccdf;
+            transition: border-color 0.2s, color 0.2s;
+            font-weight: 500;
+        }
+        a:hover {
+            color: #0a2b4a;
+            border-bottom-color: #1f5090;
+        }
+        /* 特点小网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem 1.5rem;
+            margin: 1.2rem 0 0.6rem;
+        }
+        .feature-item {
+            background: #f6f8fa;
+            padding: 0.75rem 1rem;
+            border-radius: 14px;
+            border: 1px solid #e5eaf1;
+            font-size: 0.9rem;
+            color: #1d2e40;
+        }
+        .feature-item::before {
+            content: "·";
+            color: #3d6c9b;
+            font-weight: 700;
+            margin-right: 0.45rem;
+        }
+        .faq-summary {
+            margin-top: 1rem;
+            padding-top: 1.2rem;
+            border-top: 1px dashed #dadfe6;
+        }
+        .faq-summary details {
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+        }
+        .faq-summary summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #1e3b5a;
+            padding: 0.3rem 0;
+        }
+        .faq-summary summary:hover {
+            color: #0b1a2b;
+        }
+        .faq-summary p {
+            margin: 0.5rem 0 0 1.4rem;
+            color: #3d5063;
+        }
+        .footnote {
+            margin-top: 2.2rem;
+            padding: 1rem 0;
+            font-size: 0.85rem;
+            color: #5f6f80;
+            border-top: 1px solid #dce2e9;
+            text-align: center;
+        }
+        .footnote a {
+            font-weight: 400;
+            border-bottom: none;
+        }
+        @media (max-width: 540px) {
+            body { padding: 1rem 0.8rem; }
+            .hero { padding: 1.6rem 1.2rem; }
+            .hero h1 { font-size: 1.6rem; }
+            .card { padding: 1.4rem 1.2rem; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .meta-line span { font-size: 0.75rem; padding: 0.15rem 0.6rem; }
+            .quote-note { margin-left: 0; }
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- hero 区 文章标题+导语 -->
+    <div class="hero">
+        <h1>球探体育 · 从观察到理解</h1>
+        <div class="subhead">一个围绕体育数据、赛事观察与内容分享的站点，不追逐热点，只提供可信任的信息落脚点。</div>
+        <div class="meta-line">
+            <span>站点手记</span>
+            <span>持续更新</span>
+            <span>中立视角</span>
+        </div>
+    </div>
+
+    <!-- 正文卡片一：站点介绍与可信说明 -->
+    <div class="card">
+        <p>很多人第一次听说「球探体育」时，会以为它只是一个赛果速递或赔率集合。实际接触下来，你会发现它更偏向于一种<strong>整合式的阅读与观察体验</strong>——围绕不同赛事、球队动态、数据变化，提供相对克制的信息汇编。</p>
+        <p>站内内容大多来自公开数据与编译整理，作者并不试图给出“必胜建议”或“内幕消息”，而是尽量呈现事实脉络。比如某场比赛前的主力阵容变化、某支球队近期的跑动数据、联赛积分背后的小周期趋势……这些片段拼在一起，或许能帮你自己做出判断。</p>
+
+        <div class="quote-note">
+            <strong>一点说明：</strong> 网站本身不提供投注或博彩服务，所有数据仅作体育观察参考。如果某篇文章让你觉得“原来如此”，那它的目的就达到了一半。
+        </div>
+
+        <p>我最初是找某支北欧球队的青训报告时撞见这个站点的，页面没有花哨弹窗，也没有催你注册的横幅。这种干净感在现在的体育类网站里确实不多见。后来慢慢发现，它不仅是“赛前情报”类文章，也收录了一些长文复盘和规则解读，覆盖面比想象中广一些。</p>
+    </div>
+
+    <!-- 卡片二：特点与适用场景（自然嵌入链接） -->
+    <div class="card">
+        <h2 style="font-size:1.25rem; font-weight:500; margin-bottom:0.9rem; color:#172b3a;">它适合怎样的人？</h2>
+        <p>如果你平时看比赛喜欢盯着数据面板，或者对转会传闻背后的薪资结构有点好奇，<a href="https://scoutingsport.com">球探体育</a>的内容节奏大概率和你合拍。站内文章一般不堆砌术语，但该有的引用和来源也会标清楚。</p>
+
+        <div class="feature-grid">
+            <div class="feature-item">比赛日数据摘要，而非简单比分</div>
+            <div class="feature-item">球队战术风格的量化尝试</div>
+            <div class="feature-item">青训与次级联赛的定期观察</div>
+            <div class="feature-item">规则变更、转会逻辑的通俗拆解</div>
+        </div>
+
+        <p>当然它也不是什么百科全书。比如实时滚球数据或者即时视频集锦，就不是这个站的主打。它更像一本可以随时翻两页的笔记，不承诺每个问题都有答案，但你读到的那一段通常经过筛选。</p>
+    </div>
+
+    <!-- 卡片三：引用提示 + FAQ 摘要 -->
+    <div class="card">
+        <div class="callout">
+            💡 如果你习惯用 RSS 或稍后读工具，可以把站内文章收藏起来。更新频率不算高，但每篇基本都有信息量。
+        </div>
+
+        <p>另外关于可信度：网站上引用的数据大多来自 league 官方统计或知名数据商，少数个人分析部分会明确标注“主观视角”。这一点在每篇文章底部都有简单说明，也算是一种克制——不把观点包装成事实。</p>
+
+        <div class="faq-summary">
+            <details>
+                <summary>站点主要关注哪些联赛？</summary>
+                <p>欧洲五大联赛、欧冠、欧联是基本盘，同时会覆盖部分北欧、南美以及亚洲联赛的焦点比赛。次级联赛如英冠、德乙也常有专题。</p>
+            </details>
+            <details>
+                <summary>文章会推荐外部工具或平台吗？</summary>
+                <p>偶尔会提及一些通用的数据查询网站或官方统计页面，但没有任何商业软性或返佣链接。推荐与否只看是否对理解内容有帮助。</p>
+            </details>
+            <details>
+                <summary>是否可以转载或引用内容？</summary>
+                <p>站内文章大多采用 知识共享署名-非商业性使用 方式，转载时注明出处即可。具体以每篇文章底部的许可声明为准。</p>
+            </details>
+        </div>
+    </div>
+
+    <!-- 结尾访问句 (自然嵌入 a 标签) -->
+    <div class="card" style="background:#fafbfc;">
+        <p style="font-size:1rem; margin-bottom:0.4rem;">如果你正在寻找一个不那么喧哗、更注重信息整理的体育内容站点，不妨把 <a href="https://scoutingsport.com">球探体育</a> 放进书签夹。也许某个比赛日之后，你会想翻翻那里有没有不一样的角度。</p>
+        <p style="color:#3a4e60; margin-top:0.8rem;">— 站点介绍 · 基于真实体验 —</p>
+    </div>
+
+    <div class="footnote">
+        <span>内容仅供个人参考 · 非商业站点 · 更新于 2025</span>
+    </div>
+
+</div>
+</body>
+</html>
